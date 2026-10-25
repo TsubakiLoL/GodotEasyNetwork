@@ -1,0 +1,200 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://tests/demo/room_ui.gd" id="1_room"]
+[ext_resource type="Script" path="res://addons/godot_easy_network/network_instance.gd" id="2_network"]
+
+[node name="RoomUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_room")
+
+[node name="Network" type="Node" parent="."]
+script = ExtResource("2_network")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="Layout" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/Layout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "简易房间"
+
+[node name="StatusLabel" type="Label" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "未连接"
+vertical_alignment = 1
+
+[node name="Connection" type="PanelContainer" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="ConnMargin" type="MarginContainer" parent="Margin/Layout/Connection"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="ConnRow" type="HBoxContainer" parent="Margin/Layout/Connection/ConnMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NameLabel" type="Label" parent="Margin/Layout/Connection/ConnMargin/ConnRow"]
+layout_mode = 2
+text = "名字"
+vertical_alignment = 1
+
+[node name="NameEdit" type="LineEdit" parent="Margin/Layout/Connection/ConnMargin/ConnRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player"
+
+[node name="PortLabel" type="Label" parent="Margin/Layout/Connection/ConnMargin/ConnRow"]
+layout_mode = 2
+text = "端口"
+vertical_alignment = 1
+
+[node name="PortSpin" type="SpinBox" parent="Margin/Layout/Connection/ConnMargin/ConnRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+min_value = 1.0
+max_value = 65535.0
+value = 9939.0
+
+[node name="AddressLabel" type="Label" parent="Margin/Layout/Connection/ConnMargin/ConnRow"]
+layout_mode = 2
+text = "地址"
+vertical_alignment = 1
+
+[node name="AddressEdit" type="LineEdit" parent="Margin/Layout/Connection/ConnMargin/ConnRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "127.0.0.1"
+
+[node name="CreateButton" type="Button" parent="Margin/Layout/Connection/ConnMargin/ConnRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+text = "创建房间"
+
+[node name="JoinButton" type="Button" parent="Margin/Layout/Connection/ConnMargin/ConnRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+text = "加入房间"
+
+[node name="LeaveButton" type="Button" parent="Margin/Layout/Connection/ConnMargin/ConnRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 36)
+layout_mode = 2
+disabled = true
+text = "离开"
+
+[node name="Body" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Players" type="PanelContainer" parent="Margin/Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayersMargin" type="MarginContainer" parent="Margin/Layout/Body/Players"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="PlayersLayout" type="VBoxContainer" parent="Margin/Layout/Body/Players/PlayersMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PlayersTitle" type="Label" parent="Margin/Layout/Body/Players/PlayersMargin/PlayersLayout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "玩家列表"
+
+[node name="Separator" type="HSeparator" parent="Margin/Layout/Body/Players/PlayersMargin/PlayersLayout"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/Layout/Body/Players/PlayersMargin/PlayersLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerList" type="VBoxContainer" parent="Margin/Layout/Body/Players/PlayersMargin/PlayersLayout/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="Side" type="VBoxContainer" parent="Margin/Layout/Body"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Actions" type="VBoxContainer" parent="Margin/Layout/Body/Side"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ReadyButton" type="Button" parent="Margin/Layout/Body/Side/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+disabled = true
+text = "准备"
+
+[node name="StartButton" type="Button" parent="Margin/Layout/Body/Side/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+disabled = true
+text = "开始游戏"
+
+[node name="TestButton" type="Button" parent="Margin/Layout/Body/Side/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+disabled = true
+text = "发送测试请求"
+
+[node name="LogTitle" type="Label" parent="Margin/Layout/Body/Side"]
+layout_mode = 2
+text = "日志"
+
+[node name="LogLabel" type="RichTextLabel" parent="Margin/Layout/Body/Side"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+scroll_following = true
+
+[connection signal="pressed" from="Margin/Layout/Connection/ConnMargin/ConnRow/CreateButton" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="Margin/Layout/Connection/ConnMargin/ConnRow/JoinButton" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Margin/Layout/Connection/ConnMargin/ConnRow/LeaveButton" to="." method="_on_leave_pressed"]
+[connection signal="pressed" from="Margin/Layout/Body/Side/Actions/ReadyButton" to="." method="_on_ready_pressed"]
+[connection signal="pressed" from="Margin/Layout/Body/Side/Actions/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Margin/Layout/Body/Side/Actions/TestButton" to="." method="_on_test_pressed"]
